@@ -1,0 +1,145 @@
+{
+  "catalog_url": "https://cwe.mitre.org/data/xml/views/1000.xml.zip",
+  "view_id": "1000",
+  "family_precedence": [
+    "HARDCODED_CREDENTIALS",
+    "PATH_TRAVERSAL",
+    "OS_COMMAND_INJECTION",
+    "XSS",
+    "SQL_INJECTION",
+    "INSECURE_AUTHENTICATION"
+  ],
+  "families": {
+    "PATH_TRAVERSAL": {
+      "slug": "path-traversal",
+      "root_cwe": "CWE-22",
+      "root_decision": "SELECT",
+      "auto_select_descendants": true,
+      "include_ids": [],
+      "review_ids": [],
+      "exclude_ids": [],
+      "exclude_subtrees": [],
+      "related_candidates": {}
+    },
+    "OS_COMMAND_INJECTION": {
+      "slug": "os-command-injection",
+      "root_cwe": "CWE-78",
+      "root_decision": "SELECT",
+      "auto_select_descendants": false,
+      "include_ids": [],
+      "review_ids": ["CWE-88"],
+      "exclude_ids": ["CWE-77"],
+      "exclude_subtrees": [],
+      "related_candidates": {
+        "CWE-88": "CanAlsoBe: argument injection can enable OS-command behavior, but it is not a child of CWE-78",
+        "CWE-77": "Parent: generic command injection is broader than OS command injection"
+      }
+    },
+    "XSS": {
+      "slug": "xss",
+      "root_cwe": "CWE-79",
+      "root_decision": "SELECT",
+      "auto_select_descendants": true,
+      "include_ids": [],
+      "review_ids": [],
+      "exclude_ids": [],
+      "exclude_subtrees": [],
+      "related_candidates": {}
+    },
+    "SQL_INJECTION": {
+      "slug": "sql-injection",
+      "root_cwe": "CWE-89",
+      "root_decision": "SELECT",
+      "auto_select_descendants": false,
+      "include_ids": [],
+      "review_ids": [],
+      "exclude_ids": ["CWE-564"],
+      "exclude_subtrees": [],
+      "related_candidates": {},
+      "decision_notes": {
+        "CWE-564": "Hibernate/HQL is Java-specific; exclude from the Python-source collection scope"
+      }
+    },
+    "INSECURE_AUTHENTICATION": {
+      "slug": "insecure-authentication",
+      "root_cwe": "CWE-287",
+      "root_decision": "REVIEW",
+      "auto_select_descendants": false,
+      "include_ids": [
+        "CWE-288",
+        "CWE-289",
+        "CWE-290",
+        "CWE-291",
+        "CWE-293",
+        "CWE-294",
+        "CWE-295",
+        "CWE-296",
+        "CWE-297",
+        "CWE-298",
+        "CWE-299",
+        "CWE-301",
+        "CWE-302",
+        "CWE-303",
+        "CWE-304",
+        "CWE-305",
+        "CWE-306",
+        "CWE-307",
+        "CWE-308",
+        "CWE-309",
+        "CWE-322",
+        "CWE-370",
+        "CWE-593",
+        "CWE-599",
+        "CWE-603",
+        "CWE-620",
+        "CWE-640",
+        "CWE-836",
+        "CWE-1390"
+      ],
+      "review_ids": [
+        "CWE-262",
+        "CWE-263",
+        "CWE-521",
+        "CWE-645",
+        "CWE-804"
+      ],
+      "exclude_ids": [
+        "CWE-425",
+        "CWE-1299"
+      ],
+      "exclude_subtrees": [
+        "CWE-41",
+        "CWE-522",
+        "CWE-1391"
+      ],
+      "related_candidates": {},
+      "decision_notes": {
+        "CWE-287": "MITRE mapping usage is Discouraged; use for discovery only and prefer a lower-level CWE",
+        "CWE-41": "Path-equivalence subtree is not an authentication mechanism and can overlap path handling",
+        "CWE-522": "Credential protection/storage is not the same model mechanism as authentication verification",
+        "CWE-1391": "Weak-credential subtree contains CWE-798 and would overlap the hard-coded-credentials label",
+        "CWE-425": "Forced browsing is primarily access control, not identity authentication",
+        "CWE-1299": "Alternate hardware interface is outside the Python package scope"
+      }
+    },
+    "HARDCODED_CREDENTIALS": {
+      "slug": "hardcoded-credentials",
+      "root_cwe": "CWE-798",
+      "root_decision": "SELECT",
+      "auto_select_descendants": true,
+      "include_ids": [],
+      "review_ids": [
+        "CWE-1392",
+        "CWE-1393",
+        "CWE-1394"
+      ],
+      "exclude_ids": [],
+      "exclude_subtrees": [],
+      "related_candidates": {
+        "CWE-1392": "Related weak/default-credential family; not a descendant of CWE-798",
+        "CWE-1393": "Default password; include only when the value is embedded in Python source",
+        "CWE-1394": "Default cryptographic key; include only when the value is embedded in Python source"
+      }
+    }
+  }
+}

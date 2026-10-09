@@ -1,0 +1,95 @@
+{
+  "policy_version": "1.0",
+  "catalog_version_reviewed": "4.20",
+  "catalog_date_reviewed": "2026-04-30",
+  "criteria": {
+    "RC01": "The CWE root cause is semantically consistent with exactly one of the six model families.",
+    "RC02": "The MITRE relationship and mapping guidance support use at the CWE's abstraction level.",
+    "RC03": "The weakness can reasonably be evidenced in Python source code or retained source context.",
+    "RC04": "The CWE does not create unresolved overlap with another model family.",
+    "RC05": "The CWE describes a root cause suitable for code classification, not only a policy outcome, operational condition, or consequence.",
+    "RC06": "When family-wide consistency is not guaranteed, only individually reviewed samples may proceed to TC01-TC08."
+  },
+  "decisions": {
+    "CWE-88": {
+      "model_label": "OS_COMMAND_INJECTION",
+      "resolution": "REVIEW_PER_SAMPLE",
+      "criteria": ["RC01", "RC03", "RC06"],
+      "reason": "Argument injection can alter program options without producing OS-command injection. Accept only a sample whose Python data flow reaches an operating-system process/command sink and whose injected argument enables the scoped command-execution behavior.",
+      "sample_acceptance_condition": "Untrusted input reaches an OS process/command invocation and the injected option or delimiter changes command behavior within the OS-command-injection scope.",
+      "mitre_url": "https://cwe.mitre.org/data/definitions/88.html"
+    },
+    "CWE-262": {
+      "model_label": "INSECURE_AUTHENTICATION",
+      "resolution": "EXCLUDE",
+      "criteria": ["RC03", "RC05"],
+      "reason": "Password-aging absence is primarily an authentication policy/configuration property, has no observed examples in the reviewed catalog, and is unlikely to be consistently represented by the function-level Python input used by this dataset.",
+      "sample_acceptance_condition": "Not applicable while excluded from the current project scope.",
+      "mitre_url": "https://cwe.mitre.org/data/definitions/262.html"
+    },
+    "CWE-263": {
+      "model_label": "INSECURE_AUTHENTICATION",
+      "resolution": "EXCLUDE",
+      "criteria": ["RC02", "RC03", "RC05"],
+      "reason": "MITRE mapping usage is Discouraged, password expiration is no longer widely supported as an effective protection mechanism, and the weakness is mainly policy/configuration rather than a stable function-level authentication mechanism.",
+      "sample_acceptance_condition": "Not applicable while excluded from the current project scope.",
+      "mitre_url": "https://cwe.mitre.org/data/definitions/263.html"
+    },
+    "CWE-287": {
+      "model_label": "INSECURE_AUTHENTICATION",
+      "resolution": "DISCOVERY_ONLY",
+      "criteria": ["RC02", "RC06"],
+      "reason": "CWE-287 is semantically the correct family root, but MITRE mapping usage is Discouraged because a lower-level child is usually more appropriate. Use it to discover advisories, then remap each case to the most specific supported child when evidence permits.",
+      "sample_acceptance_condition": "Do not accept CWE-287 automatically. Review the advisory and patch, prefer a specific child CWE, and retain CWE-287 only as the source/advisory label when no defensible lower-level mapping exists.",
+      "mitre_url": "https://cwe.mitre.org/data/definitions/287.html"
+    },
+    "CWE-350": {
+      "model_label": "INSECURE_AUTHENTICATION",
+      "resolution": "PROMOTE_TO_SELECT",
+      "criteria": ["RC01", "RC02", "RC03", "RC04", "RC05"],
+      "reason": "CWE-350 is an Allowed Variant and a primary child of CWE-290 Authentication Bypass by Spoofing. Its source-to-security-decision mechanism can be represented in Python DNS/hostname validation code and is consistent with the authentication-bypass family.",
+      "sample_acceptance_condition": "The Python code must use reverse-DNS-derived identity in a security/authentication decision and still pass TC01-TC08.",
+      "mitre_url": "https://cwe.mitre.org/data/definitions/350.html"
+    },
+    "CWE-645": {
+      "model_label": "INSECURE_AUTHENTICATION",
+      "resolution": "EXCLUDE",
+      "criteria": ["RC01", "RC05"],
+      "reason": "The root cause is an overly restrictive lockout mechanism whose primary effect is denial of service to legitimate users, not failure to prove identity or an authentication bypass. Including it would broaden the model label to a different mechanism.",
+      "sample_acceptance_condition": "Not applicable while excluded from the current project scope.",
+      "mitre_url": "https://cwe.mitre.org/data/definitions/645.html"
+    },
+    "CWE-804": {
+      "model_label": "INSECURE_AUTHENTICATION",
+      "resolution": "EXCLUDE",
+      "criteria": ["RC01", "RC04", "RC05"],
+      "reason": "Guessable CAPTCHA primarily concerns human/bot challenge strength and authorization workflow, not proving a claimed user identity. It is a secondary child in the authentication tree and would introduce a distinct mechanism into the label.",
+      "sample_acceptance_condition": "Not applicable while excluded from the current project scope.",
+      "mitre_url": "https://cwe.mitre.org/data/definitions/804.html"
+    },
+    "CWE-1392": {
+      "model_label": "HARDCODED_CREDENTIALS",
+      "resolution": "REVIEW_PER_SAMPLE",
+      "criteria": ["RC01", "RC03", "RC04", "RC06"],
+      "reason": "A default credential is not necessarily embedded in source code: it may be generated, configured, or forced to change. Accept only cases where the fixed credential value is present in retained Python source and is used by the vulnerable authentication/connection path.",
+      "sample_acceptance_condition": "Retained Python context contains the fixed credential value and its security-relevant use; the fix removes the literal/default or replaces it with secure configuration/generation.",
+      "mitre_url": "https://cwe.mitre.org/data/definitions/1392.html"
+    },
+    "CWE-1393": {
+      "model_label": "HARDCODED_CREDENTIALS",
+      "resolution": "REVIEW_PER_SAMPLE",
+      "criteria": ["RC01", "RC03", "RC04", "RC06"],
+      "reason": "A default password is not always hard-coded. Accept only cases with an actual fixed password literal/default in retained Python source and evidence that the value is used for authentication or service connection.",
+      "sample_acceptance_condition": "The fixed password and its use are visible in retained Python code, and the patch removes or externalizes the default.",
+      "mitre_url": "https://cwe.mitre.org/data/definitions/1393.html"
+    },
+    "CWE-1394": {
+      "model_label": "HARDCODED_CREDENTIALS",
+      "resolution": "REVIEW_PER_SAMPLE",
+      "criteria": ["RC01", "RC03", "RC04", "RC06"],
+      "reason": "A default cryptographic key may be shipped outside Python source or generated at deployment. Accept only cases where a fixed key value/default is retained in Python code and is used for a security-sensitive cryptographic or authentication operation.",
+      "sample_acceptance_condition": "The fixed key and its use are visible in retained Python code, and the patch removes, rotates, generates, or externalizes it.",
+      "mitre_url": "https://cwe.mitre.org/data/definitions/1394.html"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+# Optional tokenizer dependencies; collection and unit tests use stdlib only.
+# Versions match the locally checked tokenizer environment.
+transformers==5.17.0
+tokenizers==0.23.2

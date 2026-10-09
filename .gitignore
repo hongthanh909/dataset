@@ -1,0 +1,24 @@
+# Historical and downloaded third-party material stays local until reviewed.
+/archive/
+/data/
+/active/six-groups-v2/*
+!/active/six-groups-v2/README.md
+
+# Runtime outputs, credentials and model weights.
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+*.pem
+*.key
+*.safetensors
+*.pt
+*.pth
+*.bin
+/outputs/
+/checkpoints/
+.pytest_cache/
+.DS_Store
+Thumbs.db
